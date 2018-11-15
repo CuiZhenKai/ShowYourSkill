@@ -12,6 +12,11 @@ Vue.use(VueRouter);
 import VueResource from 'vue-resource';
 //安装
 Vue.use(VueResource);
+//设置请求的根路径
+Vue.http.options.root = 'http://192.168.43.218:9009';
+//全局设置post时候表单数据格式组织形式
+//application/x-www-from-urlencoded
+Vue.http.options.emulateJSON = true;
 
 //导入mintUi组件
 import MintUI from 'mint-ui'

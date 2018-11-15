@@ -17,7 +17,7 @@
                         <label class="control-label" for="user"></label>
                         <div class="input-group">
                             <span class="input-group-addon">用户名</span>
-                            <input type="text" class="form-control inputGroupSuccess1" id="user" aria-describedby="inputGroupSuccess1Status">
+                            <input type="text" class="form-control inputGroupSuccess1" id="user" aria-describedby="inputGroupSuccess1Status" style="color:white;" v-model="username">
                         </div>
                     </div>
                 </div>
@@ -28,14 +28,14 @@
                         <label class="control-label" for="pwd"></label>
                         <div class="input-group">
                             <span class="input-group-addon">密码</span>
-                            <input type="password" class="form-control inputGroupSuccess1" id="pwd" aria-describedby="inputGroupSuccess1Status">
+                            <input type="password" class="form-control inputGroupSuccess1" id="pwd" aria-describedby="inputGroupSuccess1Status" style="color:white;" v-model="userpwd">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
-                    <mt-button plain type="primary" size="large">我要登录</mt-button>
+                    <mt-button plain type="primary" size="large" @click="goToLogin()">我要登录</mt-button>
                 </div>
                 <div class="col-md-1"></div>
             </div>
@@ -60,12 +60,40 @@
 
 
 <script>
+    import { Toast } from 'mint-ui';
     export default{
         data(){
             return {
                 backgroundDiv:{
-                    backgroundImage:'url('+require('../imgResource/bg.jpg')+')'
+                    backgroundImage:'url('+require('../imgResource/bigq.jpg')+')'
+                },
+                //用户名
+                username:'',
+                //密码
+                userpwd:''
+            }
+        },
+        created() {
+            
+        },
+        methods:{
+            //实现登录业务的处理
+            //去登录
+            goToLogin(){
+                // console.log("1");
+                if(!this.username||!this.userpwd){
+                    Toast({
+                        message: '请输入用户名或者密码',
+                        iconClass: 'glyphicon glyphicon-edit',
+                        duration:1350
+                    });
+                    return;
                 }
+                let Username = this.username;
+                let UserPwd = this.userpwd;
+                this.$http.post("http://192.168.43.218:9009/dologin",{Username,UserPwd}).then(result=>{
+                    // console.log("1");
+                });
             }
         }
     }
@@ -78,11 +106,10 @@
         height: 100%;
         background-size: 100% 100%;
         position: absolute;
-
-
+        overflow:hidden;
         .header{
             margin-top: 100px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         .logo{
             color: white;
