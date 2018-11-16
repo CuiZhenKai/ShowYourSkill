@@ -56,6 +56,10 @@ exports.doRegist = (req,res,next)=>{
                 req.session.login = "1";
                 req.session.Uname = Uname;
 
+                //写入localStorage
+                // localStorage.setItem("login",1);
+                // localStorage.setItem("Uname",Uname);
+
                 res.send({"code":1});  //注册成功
 
                 next();
@@ -69,6 +73,31 @@ exports.doRegist = (req,res,next)=>{
 exports.doLogin = (req,res,next)=>{
     let form = new formidable.IncomingForm();
     form.parse(req,(err,fields,files)=>{
-        console.log(fields);
+        if(err){
+            console.log(err);
+        }
+        // console.log(fields);
+        Username = fields.Username;
+        // Upwd = md5(md5(Upwd)+"PGMVP");
+        //MD5反向解密返回
+        UserPwd = md5(md5(fields.UserPwd)+"PGMVP");
+        // console.log(Username,UserPwd);
+        //数据库查询
+        User.findOne({"Uname":Username,"Upwd":UserPwd},(err,result)=>{
+            //错误优先
+            if(err){
+                res.send({"code":3});  //服务器未知错误
+                return;
+            }
+            // console.log(result);
+            if(!result){
+                //错误
+                res.send({"code":-1});
+            }else{
+                
+                //正确
+                res.send({"code":1});
+            }
+        });
     });
 }

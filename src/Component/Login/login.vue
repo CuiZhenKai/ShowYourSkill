@@ -92,7 +92,33 @@
                 let Username = this.username;
                 let UserPwd = this.userpwd;
                 this.$http.post("http://192.168.43.218:9009/dologin",{Username,UserPwd}).then(result=>{
-                    // console.log("1");
+                    // console.log(result);
+                    let code = result.body.code;
+                    switch(code){
+                        case -1:
+                            Toast({
+                                message: '用户名不存在或者密码不正确',
+                                iconClass: 'glyphicon glyphicon-send',
+                                duration:1350
+                            });
+                            break;
+                        case 3:
+                            Toast({
+                                message: '服务器出错',
+                                iconClass: 'glyphicon glyphicon-remove',
+                                duration:1350
+                            });
+                            break;
+                        default:
+                            Toast({
+                                message: '登录成功,SYS欢迎您',
+                                iconClass: 'glyphicon glyphicon-hand-up',
+                                duration:1350
+                            });
+                            //注册成功,跳转到首页
+                            window.location.hash = "#/";
+                            break;
+                    }
                 });
             }
         }

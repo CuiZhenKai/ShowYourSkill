@@ -30,6 +30,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Component/indexCss/index.css';
 // import './bg.jpg'
 
+// 导入 MUI 的样式
+// import './lib/mui/css/mui.min.css'
 
 
 //导入router.js模块
