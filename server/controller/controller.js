@@ -7,6 +7,8 @@ const db = require('../models/db.js');
 const md5 = require('../models/md5.js');
 //导入用户表
 const User = require('../models/user.js');
+//导入技能表
+const SkillList = require('../models/skillList.js');
 //导入内置的http和path模块模块
 const http = require('http'),
       path = require('path');
@@ -94,10 +96,55 @@ exports.doLogin = (req,res,next)=>{
                 //错误
                 res.send({"code":-1});
             }else{
-                
+                // localStorage.setItem("login",1);
+                // localStorage.setItem("name",Username);
                 //正确
                 res.send({"code":1});
             }
         });
     });
 }
+
+
+//实现发布技能业务
+exports.saveSkill = (req,res,next)=>{
+    let form = new formidable.IncomingForm();
+    form.parse(req,(err,fields,files)=>{
+        // console.log(fields);
+        let {otherWay,skillIntro,salary,username} = fields;
+        // console.log(otherWay,username);
+        let arr = [{
+            "Sname":username,
+            "SotherWay":otherWay,
+            "SskillIntro":skillIntro,
+            "Ssalary":salary
+        }];
+        //插入技能表中
+        SkillList.insertMany(arr,(err,docs)=>{
+            if(err){
+                //服务器端位置错误
+                res.send({"code":3});
+                return;
+            }
+            // console.log([{otherWay,skillIntro,salary,username}]);
+            //发布技能成功
+            res.send({"code":1});
+
+
+            next();
+        });
+    });
+}
+
+//实现获取技能列表任务
+exports.getSkill = (req,res,next)=>{
+    // console.log("1");
+    SkillList.find({},(err,docs)=>{
+        if(err){
+            //后台服务器错误,获取数据失败
+            res.send({"code":3});
+            return;
+        }
+        res.send({"code":1,data:docs});
+    });
+};

@@ -38,7 +38,8 @@
     "mongoose": "^5.3.12",
     "vue": "^2.5.2",
     "vue-resource": "^1.5.1",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "proxy": "http://192.168.43.218:9009"
 }

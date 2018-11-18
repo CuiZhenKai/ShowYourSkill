@@ -61,6 +61,7 @@
 
 <script>
     import { Toast } from 'mint-ui';
+    import store from '../../vuex/store.js';
     export default{
         data(){
             return {
@@ -115,7 +116,12 @@
                                 iconClass: 'glyphicon glyphicon-hand-up',
                                 duration:1350
                             });
-                            //注册成功,跳转到首页
+                            //登录成功,跳转到首页
+                            //使用store和localstorge联合存储
+                            // this.$store.commit('isLogin',result.status);
+                            localStorage.setItem("isLogin",1);
+                            localStorage.setItem("username",Username);
+                            // console.log(result);
                             window.location.hash = "#/";
                             break;
                     }

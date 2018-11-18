@@ -8,6 +8,14 @@ import VueRouter from 'vue-router';
 //安装路由
 Vue.use(VueRouter);
 
+//导入vuex
+import Vuex from 'vuex';
+//导入仓库
+import store from './vuex/store.js';
+//安装vuex
+Vue.use(Vuex);
+
+
 //导入请求数据所需要的插件
 import VueResource from 'vue-resource';
 //安装
@@ -45,6 +53,14 @@ var vm = new Vue({
     el:'#app',
     //渲染app
     render:c=>c(app),
+    //使用store
+    store,
     //将路由挂载到页面上
-    router
+    router,
+    // created() {
+    //     if(localStorage.getItem("isLogin")===null){
+    //         localStorage.setItem("isLogin",'');
+    //     }
+    //     this.$store.state.isLogin = localStorage.getItem('isLogin');
+    // },
 })

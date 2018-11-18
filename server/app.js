@@ -9,6 +9,7 @@ const controller = require('./controller/controller.js');
 //导入M模块,用来处理具体的数据 db.js
 const db = require('./models/db.js');
 const User = require('./models/user.js');
+const SkillList = require('./models/skillList.js');
 
 //导入session插件
 const session = require('express-session');
@@ -38,14 +39,21 @@ app.all('*', (req, res, next) => {
 app.use('/doregist',controller.doRegist);
 //处理登录业务
 app.use('/dologin',controller.doLogin);
+//处理发布技能业务
+app.use('/saveSkill',controller.saveSkill);
+//处理获取多种技能任务
+app.use("/getSkill",controller.getSkill);
 
 //测试查找
 app.use('/find',(req,res)=>{
-    // User.remove({},(err,doc)=>{});
-    User.find({},(err,docs)=>{
+    // SkillList.remove({},(err,doc)=>{});
+    SkillList.find({},(err,docs)=>{
         res.send(docs);
     })
 });
+
+
+
 
 app.listen(9009,()=>{
     console.log("9090端口正在被监听");

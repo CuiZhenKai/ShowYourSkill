@@ -6,7 +6,7 @@
 
 
         <!--底部tab栏部分-->
-        <mt-tabbar v-model="hotSkill" v-if="display">
+        <mt-tabbar fixed v-model="hotSkill" v-if="display">
             <router-link to="/" class="width25">
                 <mt-tab-item id="hotSkill" >
                     <img slot="icon" src="Component/imgResource/hot.png">
@@ -23,7 +23,7 @@
             <router-link to="/news" class="width25">
                 <mt-tab-item id="News">
                     <img slot="icon" src="Component/imgResource/news.png">
-                    资讯
+                    展示
                 </mt-tab-item>
             </router-link>
 
@@ -78,6 +78,7 @@
 
 <style lang="less" scoped>
     
+   
     
     .mint-tabbar{
         background-color:#fff;
