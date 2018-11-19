@@ -3,7 +3,7 @@
   <div class="show">
     <mt-header fixed title="技能总览"></mt-header>
 
-    <div class="card" v-for="item in skillList">
+    <div class="card" v-for="item in skillList" @click="contact">
             <div class="card-header">发布者:{{item.Sname}}</div>
             <div class="card-content">
             <div class="list-block media-list">
@@ -61,8 +61,10 @@
               Toast("获取数据失败");
             }
           });
+        },
+        contact(){
+          Toast("暂未实现在线聊天,请使用第三方联系");
         }
-        
       }
     }
 </script>

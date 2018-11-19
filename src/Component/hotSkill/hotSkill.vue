@@ -23,11 +23,7 @@
 
         <div class="card">
             <div class="card-header">热门搜索</div>
-            <div class="card-footer">篮球</div>
-            <div class="card-footer">编程</div>
-            <div class="card-footer">替课</div>
-            <div class="card-footer">英语口语</div>
-            <div class="card-footer">{{$store.state.show}}</div>
+            <div class="card-footer" v-for="item in show">{{item}}</div>
         </div>
     </div>
     
@@ -39,25 +35,33 @@
     import { Toast } from 'mint-ui';
     import {mapActions,mapState} from 'vuex';
     export default{
+      computed:{
+          //... 扩展运算符
+          ...mapState({
+              show:state=>state.show
+          })
+      },
       data(){
           return{
               hotSkill:''
           }
       },
       created() {
-          this.show();
+        //   this.$store.dispatch('switch_dialog1');
+        //   this.show();
+        // show();
           //console.log();
           //如果非法访问,看看是否已经登录,如果没有登录,则跳回登录页
           if(!localStorage.getItem("isLogin") || localStorage.getItem("isLogin")!=1){
             // console.log("未登录");
             window.location.hash = "#/login";
           }
-      },
-      computed:{
-          show(){
-              return this.$store.dispatch('switch_dialog1');
-          }
       }
+    //   computed:{
+    //       show(){
+    //           return this.$store.dispatch('switch_dialog1');
+    //       }
+    //   }
     }
 </script>
 

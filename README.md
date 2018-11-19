@@ -83,3 +83,19 @@
       但是写法应该是this.$store.dispatch('方法名');
       4.很多时候 , $store.state.dialog.show 、$store.dispatch('switch_dialog') 这种写法又长又臭 , 很不方便 ,
       出现了方便的东西
+      5.关于mapState等等函数,这里只列举这个函数的用法为例
+      mapState在我看来就是就是将state进行重新的命名
+      用法就是:
+      在脚本中加入计算属性
+      compouted:{
+         ...mapState{
+            show:state=>state.show
+         }
+      }
+      在模板中我们直接写show就可以了
+   ##十
+      完结:
+      实现了登录 注册 热门搜索 发布技能 查看技能 退出登录 切换账号
+      后续:
+      需要扩展:头像更换 搜索 资料更换 在线支付 第三方登录 在线联系
+      

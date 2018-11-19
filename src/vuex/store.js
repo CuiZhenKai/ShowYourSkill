@@ -13,19 +13,19 @@ const store = new Vuex.Store({
     state:{
         // userName:"test",
         // isLogin:"",
-        show:false
+        show:['篮球','编程','足球','家教']
     },
-    mutations:{
-        switch_dialog(state){//这里的state代表的是上面的state
-            state.show = state.show?false:true;
-        }
-    },
-    actions:{
-        switch_dialog1(context){
-            context.commit('switch_dialog');
-            //也可以触发其他的方法
-        }
-    }
+    // mutations:{
+    //     switch_dialog(state){//这里的state代表的是上面的state
+    //         state.show = state.show?false:true;
+    //     }
+    // },
+    // actions:{
+    //     switch_dialog1(context){
+    //         context.commit('switch_dialog');
+    //         //也可以触发其他的方法
+    //     }
+    // }
     // mutations:{
     //     newUser(state,msg){
     //         state.userName = msg;
