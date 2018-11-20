@@ -98,4 +98,4 @@
       实现了登录 注册 热门搜索 发布技能 查看技能 退出登录 切换账号
       后续:
       需要扩展:头像更换 搜索 资料更换 在线支付 第三方登录 在线联系
-      
+    [demo](https://cuizhenkai.github.io/ShowYourSkill/index.html)
